@@ -34,101 +34,43 @@ export class Game {
     }
 
     private checkAlignment(): boolean {
-        const verticalAlignment = this.checkVerticals();
-        const horizontalAlignment = this.checkHorizontals();
-        const diagonalAlignment = this.checkDiagonals();
-        return verticalAlignment || horizontalAlignment || diagonalAlignment;
-    }
-
-    private checkVerticals(): boolean {
         let isAlignment = false;
-        for (let i = 1; i <= 3; i++) {
-            isAlignment = this.checkColumn(i);
+        for (let i = 1; i <= 8; i++) {
+            isAlignment = this.checkLines(i);
             if(isAlignment) break;
         }
         return isAlignment;
     }
 
-    private checkHorizontals(): boolean {
-        let isAlignment = false;
-        for (let i = 1; i <= 3; i++) {
-            isAlignment = this.checkRaw(i);
-            if(isAlignment) break;
-        }
+    private checkLines(line: number): boolean {
+        const currentColumn = this.getLine(line);    
+        const checkedLine = [this.cases[currentColumn[0]], this.cases[currentColumn[1]], this.cases[currentColumn[2]]];
+        const isAlignment = checkedLine[0].sign == checkedLine[1].sign 
+                            && checkedLine[1].sign == checkedLine[2].sign 
+                            && checkedLine[0].sign !== Sign.EMPTY;
         return isAlignment;
     }
 
-    private checkDiagonals(): boolean {
-        let isAlignment = false;
-        for (let i = 1; i <= 2; i++) {
-            isAlignment = this.checkDiagonal(i);
-            if(isAlignment) break;
-        }
-        return isAlignment;
-    }
-    
-    private checkColumn(column: number): boolean {
-        const currentColumn = this.getColumn(column);    
-        const line = [this.cases[currentColumn[0]], this.cases[currentColumn[1]], this.cases[currentColumn[2]]];
-        const isAlignment = line[0].sign == line[1].sign 
-                            && line[1].sign == line[2].sign 
-                            && line[0].sign !== Sign.EMPTY;
-        return isAlignment;
-    }
-
-    private checkRaw(raw: number): boolean {
-        const currentRow = this.getRaw(raw);    
-        const line = [this.cases[currentRow[0]], this.cases[currentRow[1]], this.cases[currentRow[2]]];
-        const isAlignment = line[0].sign == line[1].sign 
-                            && line[1].sign == line[2].sign 
-                            && line[0].sign !== Sign.EMPTY;
-        
-        return isAlignment;
-    }
-
-    private checkDiagonal(diag: number): boolean {
-        const currentDiagonal = this.getDiagonal(diag);    
-        const line = [this.cases[currentDiagonal[0]], this.cases[currentDiagonal[1]], this.cases[currentDiagonal[2]]];
-        const isAlignment = line[0].sign == line[1].sign 
-                            && line[1].sign == line[2].sign 
-                            && line[0].sign !== Sign.EMPTY;
-        
-        return isAlignment;
-    }
-
-    private getColumn(col: number): number[]{
-        switch (col) {
+    private getLine(line: number): number[]{
+        switch (line) {
             case 1:
                 return [1, 4, 7];
             case 2:
                 return [2, 5, 8];
             case 3:
                 return [3, 6, 9];
-            default: throw new Error("column is out of bound");
-        }
-    }
-
-    private getRaw(raw: number): number[]{
-        switch (raw) {
-            case 1:
+            case 4:
                 return [1, 2, 3];
-            case 2:
+            case 5:
                 return [4, 5, 6];
-            case 3:
+            case 6:
                 return [7, 8, 9];
-
-            default: throw new Error("raw is out of bound");
-        }
-    }
-
-    private getDiagonal(diag: number): number[]{
-        switch (diag) {
-            case 1:
+            case 7:
                 return [7, 5, 3];
-            case 2:
+            case 8:
                 return [1, 5, 9];
-    
-            default: throw new Error("diag is out of bound");
+        
+            default: throw new Error("line is out of bound");
         }
     }
 
