@@ -105,7 +105,6 @@ export class Game {
             case 3:
                 return [3, 6, 9];
             default: throw new Error("column is out of bound");
-
         }
     }
 
@@ -119,8 +118,6 @@ export class Game {
                 return [7, 8, 9];
 
             default: throw new Error("raw is out of bound");
-            
-
         }
     }
 
