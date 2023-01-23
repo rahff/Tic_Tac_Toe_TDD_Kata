@@ -43,8 +43,8 @@ export class Game {
     }
 
     private checkLines(line: number): boolean {
-        const currentColumn = this.getLine(line);    
-        const checkedLine = [this.cases[currentColumn[0]], this.cases[currentColumn[1]], this.cases[currentColumn[2]]];
+        const currentLine = this.getLine(line);    
+        const checkedLine = [this.cases[currentLine[0]], this.cases[currentLine[1]], this.cases[currentLine[2]]];
         const isAlignment = checkedLine[0].sign == checkedLine[1].sign 
                             && checkedLine[1].sign == checkedLine[2].sign 
                             && checkedLine[0].sign !== Sign.EMPTY;
