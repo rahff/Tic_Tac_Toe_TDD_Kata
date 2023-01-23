@@ -35,7 +35,7 @@ export class Game {
 
     private checkAlignment(): boolean {
         let isAlignment = false;
-        for (let i = 1; i <= 8; i++) {
+        for (let i = 1; i < this.cases.length-1; i++) {
             isAlignment = this.checkLines(i);
             if(isAlignment) break;
         }
