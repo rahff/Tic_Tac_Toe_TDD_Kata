@@ -40,19 +40,19 @@ export class Game {
         return verticalAlignment || horizontalAlignment || diagonalAlignment;
     }
 
-    private checkHorizontals(): boolean {
+    private checkVerticals(): boolean {
         let isAlignment = false;
         for (let i = 1; i <= 3; i++) {
-            isAlignment = this.checkRaw(i);
+            isAlignment = this.checkColumn(i);
             if(isAlignment) break;
         }
         return isAlignment;
     }
 
-    private checkVerticals(): boolean {
+    private checkHorizontals(): boolean {
         let isAlignment = false;
         for (let i = 1; i <= 3; i++) {
-            isAlignment = this.checkColumn(i);
+            isAlignment = this.checkRaw(i);
             if(isAlignment) break;
         }
         return isAlignment;
