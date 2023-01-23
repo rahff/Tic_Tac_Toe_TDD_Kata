@@ -132,8 +132,6 @@ export class Game {
                 return [1, 5, 9];
     
             default: throw new Error("diag is out of bound");
-            
-
         }
     }
 
