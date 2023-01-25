@@ -17,6 +17,10 @@ export class Game {
         this.currentPlayer = Sign.X;
     }
 
+    public getGameGrid(): Case[] {
+        return this.cases;
+    }
+
     public getCurrentPlayer(): Sign {
         return this.currentPlayer;
     }
