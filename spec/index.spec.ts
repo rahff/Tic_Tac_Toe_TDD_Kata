@@ -113,4 +113,18 @@ describe('Tic Tac Toe game', ()=> {
         expect(game.getWinner()).toBe(Sign.X);
     })
 
+    it("player X and O fullfil all cases without make any alignment terminate the game without winner", ()=>{
+        game.play(2);
+        game.play(3);
+        game.play(6);
+        game.play(1);
+        game.play(9);
+        game.play(8);
+        game.play(5);
+        game.play(4);
+        game.play(7);
+        expect(game.isTerminate()).toBeTrue();
+        expect(game.getWinner()).toBeNull()
+    })
+
 })

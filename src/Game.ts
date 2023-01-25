@@ -7,6 +7,7 @@ export class Game {
 
     private terminated = false;
     private currentPlayer: Sign;
+    private counter = 0;
     private cases: Case[] = [{position: 0, sign: Sign.EMPTY}, // we keep this case EMPTY to begin at index 1 for simplicity
         {position: 1, sign: Sign.EMPTY}, {position: 2, sign: Sign.EMPTY}, {position: 3, sign: Sign.EMPTY}, 
         {position: 4, sign: Sign.EMPTY}, {position: 5, sign: Sign.EMPTY}, {position: 6, sign: Sign.EMPTY},
@@ -22,15 +23,16 @@ export class Game {
 
     public play(position: number): void {
         if(this.enablePlayAtPosition(position)){
+            this.counter++;
             this.cases[position].sign = this.currentPlayer;
-            this.terminated = this.checkAlignment();
+            this.terminated = this.checkAlignment() || this.drawPolicy();
             if(this.terminated) return;
             this.swapPlayerRole();
         } 
     }
 
     private enablePlayAtPosition(position: number): boolean {
-        return this.cases[position].sign == Sign.EMPTY && !this.terminated
+        return this.cases[position].sign == Sign.EMPTY && !this.terminated && this.counter < 9;
     }
 
     private checkAlignment(): boolean {
@@ -87,10 +89,18 @@ export class Game {
     }
 
     public getWinner(): Sign | null {
-        if(this.terminated){
+        if(this.isTerminateWithWinner()){
             return this.currentPlayer;
         }
         return null;
+    }
+
+    private isTerminateWithWinner(): boolean {
+        return this.terminated && this.counter < 9;
+    }
+
+    private drawPolicy(): boolean {
+        return !this.terminated && this.counter >= 9;
     }
 }
 
