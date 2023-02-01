@@ -1,4 +1,4 @@
-import { Game, Sign } from "../src/Game"
+import { Game, Sign } from "./Game";
 
 
 
