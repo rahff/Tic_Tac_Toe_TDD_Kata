@@ -108,6 +108,4 @@ export class Game {
     }
 }
 
-
-
 export enum Sign { X="X", O="O", EMPTY="EMPTY" }
