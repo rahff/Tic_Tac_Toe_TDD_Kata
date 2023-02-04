@@ -1,4 +1,4 @@
-interface Case {
+export interface Case {
     position: number;
     sign: Sign
 }
