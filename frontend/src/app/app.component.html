@@ -1,11 +1,30 @@
 <h1>Jouer au <a href="https://fr.wikipedia.org/wiki/Morpion_(jeu)">Morpion</a></h1>
 
-    
+<main class="background">
+    <section class="title">
+        <h1>Tic Tac Toe</h1>
+    </section>
+    <section class="display" *ngIf="currentPlayer$ | async let player">
+        Player <span class="display-player playerX">{{player.sign}}</span>'s turn
+    </section>
+    <section class="container" *ngIf="gridState$ | async; let grid">
+        <div (click)="play(cell.position)" 
+        [ngClass]="{'playerX': cell.sign == 'X', 'playerO': cell.sign == 'O', 'tile': true}" 
+        *ngFor="let cell of grid">
+            <div *ngIf="cell.sign != 'EMPTY'">{{cell.sign}}</div>
+        </div>
+       
+    </section>
+    <section class="display announcer hide"></section>
+    <section class="controls">
+        <button id="reset">Reset</button>
+    </section>
+</main>
 
-    <div *ngIf="gridState$ | async; let grid">
+    <!-- <div *ngIf="gridState$ | async; let grid">
         <div class="raw" *ngFor="let cell of grid">
             <div (click)="play(cell.position)" class="cell">{{cell.sign}}</div>
         </div>
-    </div>
+    </div> -->
 
 

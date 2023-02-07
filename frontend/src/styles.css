@@ -1,54 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
-.raw{
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Itim', cursive;
+}
+.background {
+    background-color: black;
+}
+
+.container {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 33% 33% 33%;
+    max-width: 300px;
+}
+.tile {
+    border: 1px solid white;
+    min-width: 100px;
+    min-height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-}
-
-.cell{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid black;
-    width: 50px;
-    height: 50px;
-
-    font-size: 35px;
-    /* font-size: 50px; */
-}
-
-#cell_1, #cell_2, #cell_3 {
-    border-top: 0px solid black;
-}
-
-#cell_1, #cell_4, #cell_7 {
-    border-left: 0px solid black;
-}
-
-#cell_7, #cell_8, #cell_9 {
-    border-bottom: 0px solid black;
-}
-
-#cell_3, #cell_6, #cell_9 {
-    border-right: 0px solid black;
-}
-
-/* #jeSuisUnCarre{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid black;
-    width: 50px;
-    height: 50px;
-
     font-size: 50px;
+    cursor: pointer;
 }
 
-#jeSuis2{
-    border: 1px solid black;
-    width: 45px;
-    height: 45px;
-} */
+.playerX {
+    color: #09C372;
+}
+
+.playerO {
+    color: #498AFB;
+}

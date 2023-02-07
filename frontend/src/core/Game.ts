@@ -19,9 +19,12 @@ export class Game {
         this.currentPlayer = sign;
         this.cases[0].sign = this.currentPlayer;
     }
+    public getHeaderCase(): Case {
+        return this.cases[0];
+    }
 
     public getGameGrid(): Case[] {
-        return this.cases;
+        return this.cases.slice(1);
     }
 
     public getCurrentPlayer(): Sign {

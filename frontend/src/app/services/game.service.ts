@@ -8,6 +8,7 @@ import { Case, Game } from 'src/core/Game';
 export class GameService {
 
   private gridState$: BehaviorSubject<Case[]> = new BehaviorSubject(this.game.getGameGrid());
+  private headerCase$: BehaviorSubject<Case> = new BehaviorSubject(this.game.getHeaderCase());
 
   constructor(private game: Game) { }
 
@@ -17,5 +18,9 @@ export class GameService {
 
   public playAtPosition(gridPosition: number): void {
     this.game.play(gridPosition);
+  }
+
+  public getHeaderCase(): Observable<Case> {
+    return this.headerCase$.asObservable();
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { Case } from 'src/core/Game';
 import { GameService } from './services/game.service';
 
@@ -11,14 +11,16 @@ import { GameService } from './services/game.service';
 export class AppComponent implements OnInit {
   
   public gridState$: Observable<Case[]> = new Observable();
+  public currentPlayer$: Observable<Case> = new Observable();
   constructor(private gameService: GameService){}
 
   ngOnInit(): void {
     this.gridState$ = this.gameService.getGrid();
+    this.currentPlayer$ = this.gameService.getHeaderCase();
   }
 
   public play(atPosition: number): void {
-    this.gameService.playAtPosition(atPosition)
+    this.gameService.playAtPosition(atPosition);
   }
 
 }
