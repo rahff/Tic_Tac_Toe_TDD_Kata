@@ -125,6 +125,13 @@ describe('Tic Tac Toe game', ()=> {
         game.play(7);
         expect(game.isTerminate()).toBeTrue();
         expect(game.getWinner()).toBeNull()
+    });
+
+    it("current player should be display at the first unuse case", ()=> {
+        const signInUnuseCase = () => game.getSignOnPosition(0);
+        expect(signInUnuseCase()).toBe(Sign.X)
+        game.play(2)
+        expect(signInUnuseCase()).toBe(Sign.O)
     })
 
 })

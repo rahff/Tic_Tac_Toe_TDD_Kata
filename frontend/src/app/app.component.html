@@ -2,22 +2,9 @@
 
     
 
-
-    <div id="grid">
-        <div class="raw">
-            <div id="cell_1" class="cell">🟢</div>
-            <div id="cell_2" class="cell">❌</div>
-            <div id="cell_3" class="cell"></div>
-        </div>
-        <div class="raw">
-            <div id="cell_4" class="cell"></div>
-            <div id="cell_5" class="cell">❌</div>
-            <div id="cell_6" class="cell"></div>
-        </div>
-        <div class="raw">
-            <div id="cell_7" class="cell"></div>
-            <div id="cell_8" class="cell"></div>
-            <div id="cell_9" class="cell"></div>
+    <div *ngIf="gridState$ | async; let grid">
+        <div class="raw" *ngFor="let cell of grid">
+            <div (click)="play(cell.position)" class="cell">{{cell.sign}}</div>
         </div>
     </div>
 

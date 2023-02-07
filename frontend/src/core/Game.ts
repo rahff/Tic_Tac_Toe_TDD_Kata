@@ -6,15 +6,18 @@ export interface Case {
 export class Game {
 
     private terminated = false;
-    private currentPlayer: Sign;
+    private currentPlayer = Sign.X;
     private counter = 0;
-    private cases: Case[] = [{position: 0, sign: Sign.EMPTY}, // we keep this case EMPTY to begin at index 1 for simplicity
+    private cases: Case[] = [{position: 0, sign: Sign.X}, // we use this case to display the current player;
         {position: 1, sign: Sign.EMPTY}, {position: 2, sign: Sign.EMPTY}, {position: 3, sign: Sign.EMPTY}, 
         {position: 4, sign: Sign.EMPTY}, {position: 5, sign: Sign.EMPTY}, {position: 6, sign: Sign.EMPTY},
         {position: 7, sign: Sign.EMPTY}, {position: 8, sign: Sign.EMPTY}, {position: 9, sign: Sign.EMPTY}]
     
-    constructor(){
-        this.currentPlayer = Sign.X;
+    constructor(){}
+
+    private setCurrentPlayer(sign: Sign): void {
+        this.currentPlayer = sign;
+        this.cases[0].sign = this.currentPlayer;
     }
 
     public getGameGrid(): Case[] {
@@ -26,6 +29,7 @@ export class Game {
     }
 
     public play(position: number): void {
+        this.cases[0].sign = this.currentPlayer;
         if(this.enablePlayAtPosition(position)){
             this.counter++;
             this.cases[position].sign = this.currentPlayer;
@@ -81,7 +85,7 @@ export class Game {
     }
 
     private swapPlayerRole(): void {
-        this.currentPlayer = this.currentPlayer === Sign.X ? Sign.O : Sign.X;
+        this.setCurrentPlayer(this.currentPlayer === Sign.X ? Sign.O : Sign.X);
     }
 
     public getSignOnPosition(position: number): Sign {
